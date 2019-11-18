@@ -1,0 +1,50 @@
+data:
+  train_wav_dir:
+    -  '/media/sam/Data/synth_chime_dev_example/audio/dev/' # path to the synthetic data wav directory
+  train_json_dir:
+    -  '/media/sam/Data/synth_chime_dev_example/transcriptions/dev/' # path to synthetic data json directory
+  val_wav_dir:
+    -  '/media/sam/Data/synth_chime_dev_example/audio/dev/'
+  val_json_dir:
+    -  '/media/sam/Data/synth_chime_dev_example/transcriptions/dev/'
+  audio_len: 32000
+  stride_length: 32000 # no overlap between examples
+  fs: 16000
+  smooth: 0
+  collar: 0.0
+  th: 0.000
+  nearest: 0
+  train_save_examples: '/tmp/tot_examples_train.pickle'
+  dev_save_examples: '/tmp/tot_examples_dev.pickle'
+---
+log:
+  chkpt_dir: 'chkpt'
+  log_dir: 'logs'
+---
+train:
+  batch_size: 8
+  num_workers: 1
+  optimizer: 'adam'
+  adam: 0.001
+  n_epochs: 100
+  save_best: 0 # save only best model
+
+---
+model:
+  n_input_channels: 694
+  n_filters_b: 128
+  n_filters_c: 256
+  n_blocks: 3
+  n_repeats: 3
+  ksz: 3
+---
+features:
+  n_fft: 512
+  hop: 256
+  ws: 512
+  nb_mono: 0
+  nb_multi: 1
+  n_gcc: 32
+
+
+
